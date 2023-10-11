@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     const checkScreenWidth = () => {
-      setShowOverlay(window.innerWidth > 375);
+      setShowOverlay(window.innerWidth > 400);
     };
 
     checkScreenWidth(); 
