@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import menuIcon from '../../assets/menu.svg';
 import arrow from '../../assets/arrow.svg';
 import './Navbar.css';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  
+  const [currentDate, setCurrentDate] = useState('');
+
+  useEffect(() => {
+    const getCurrentDate = () => {
+      const today = new Date();
+      const day = today.getDate();
+      const month = today.toLocaleString('default', { month: 'short' });
+      return `${day} ${month}`;
+    };
+
+    setCurrentDate(getCurrentDate());
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -20,7 +33,7 @@ export default function Navbar() {
         <button onClick={toggleMenu}>
           <img src={menuIcon} alt="" />
         </button>
-        <span>Today - 11 Oct</span>
+        <span>{`Today - ${currentDate}`}</span>
         <span></span>
       </nav>
 
