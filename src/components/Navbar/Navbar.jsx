@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import menuIcon from '../../assets/menu.svg';
 import arrow from '../../assets/arrow.svg';
+import exit from '../../assets/exit.svg'
 import './Navbar.css';
 
 export default function Navbar() {
@@ -31,7 +32,7 @@ export default function Navbar() {
     <>
       <nav className="flex justify-between p-4 text-grey-400">
         <button onClick={toggleMenu} className='z-20'>
-          <img src={menuIcon} alt=""/>
+        <img src={`${isOpen ? exit : menuIcon}`} alt="" />
         </button>
         <span>{`Today - ${currentDate}`}</span>
         <span></span>
