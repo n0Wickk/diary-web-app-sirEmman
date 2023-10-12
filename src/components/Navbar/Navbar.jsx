@@ -39,7 +39,7 @@ export default function Navbar() {
       </nav>
 
       <section className={`absolute -bottom-[954px] w-full ${isOpen ? '' : 'hidden'}`}>
-      <div className="fixed inset-0 backdrop-blur-sm bg-opacity-1 z-0" onClick={toggleMenu} />
+      <div className="fixed inset-0 backdrop-blur-[2px] z-0" onClick={toggleMenu} />
         <div
           className={`bg-black-400 text-white-400 rounded-t-[32px] hover:cursor-pointer slide-up ${isOpen ? '' : 'hidden-div'}`}
           style={{ animationDelay: '0.1s' }}
@@ -64,7 +64,7 @@ export default function Navbar() {
           <div className="pt-10 pb-[1000px] px-4">
             <div className="flex justify-between">
               <span className="text-grey-400">Last updated - 01 Oct</span>
-              <img src={arrow} alt="" />
+              <img src={arrow} alt="" className='filter brightness-50'/>
             </div>
             <div className="text-xl font-bold mt-2">
               <h2>Gallery</h2>
