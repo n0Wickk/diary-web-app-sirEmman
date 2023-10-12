@@ -24,7 +24,7 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
       </Routes>
       {showOverlay && <div className="overlay top-0 w-[100vw] h-[100vh] absolute bg-white-400">Ctrl + Shft + C, tapos ilagay ang dimensions sa Iphone SE</div>}
