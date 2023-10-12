@@ -30,14 +30,15 @@ export default function Navbar() {
   return (
     <>
       <nav className="flex justify-between p-4 text-grey-400">
-        <button onClick={toggleMenu}>
-          <img src={menuIcon} alt="" />
+        <button onClick={toggleMenu} className='z-20'>
+          <img src={menuIcon} alt=""/>
         </button>
         <span>{`Today - ${currentDate}`}</span>
         <span></span>
       </nav>
 
       <section className={`absolute -bottom-[954px] w-full ${isOpen ? '' : 'hidden'}`}>
+      <div className="fixed inset-0 backdrop-blur-sm bg-opacity-1 z-0" onClick={toggleMenu} />
         <div
           className={`bg-black-400 text-white-400 rounded-t-[32px] hover:cursor-pointer slide-up ${isOpen ? '' : 'hidden-div'}`}
           style={{ animationDelay: '0.1s' }}
