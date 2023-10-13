@@ -38,9 +38,19 @@ export default function Navbar() {
 
   return (
     <>
+      {isOnProfilePage ?
+        <style>{`
+          body {
+            background-color: #7A70DD;
+          }
+        `}</style>
+        :
+        null
+      }
+
       <nav 
       className={`flex justify-between p-4 text-grey-400 items-baseline
-      ${isOnProfilePage ? 'bg-blue-400 text-white-400' : ''}`}
+      ${isOnProfilePage ? 'text-white-400' : ''}`}
       >
         <button 
         onClick={toggleMenu} 
