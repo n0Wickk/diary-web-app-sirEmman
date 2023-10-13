@@ -57,7 +57,10 @@ export default function Navbar() {
         </span>
       </nav> 
 
-      <section className={`absolute -bottom-[954px] w-full ${isOpen ? '' : 'hidden'}`}>
+      <section 
+      className={`fixed -bottom-[954px] w-full
+      ${isOpen ? '' : 'hidden'
+      }`}>
       <div 
       className="fixed inset-0 backdrop-blur-[2px] z-0" 
       onClick={toggleMenu} />
@@ -98,14 +101,16 @@ export default function Navbar() {
         </div>
 
         <div
-          className={`bg-blue-400 text-white-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up ${isOpen ? '' : 'hidden-div'}`}
+          className={`bg-blue-400 text-white-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up 
+          ${isOpen ? '' : 'hidden-div'
+        }`}
           style={{ animationDelay: '0.6s' }}
           onClick={redirectToProfile}
         >
           <div className="pt-10 pb-[1000px] px-4">
             <div className="flex justify-between">
               <span>Last updated - 01 Oct</span>
-              <img src={arrow} alt="" />
+              <img src={arrow} />
             </div>
             <div className="text-xl font-bold mt-2">
               <h2>Profile</h2>
