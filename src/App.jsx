@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Profile from './pages/Profile'
 
 function App() {
   const [showOverlay, setShowOverlay] = useState(false);
 
   useEffect(() => {
     const checkScreenWidth = () => {
-      setShowOverlay(window.innerWidth > 400);
+      setShowOverlay(window.innerWidth > 4000);
     };
 
     checkScreenWidth(); 
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       {showOverlay && <div className="overlay top-0 w-[100vw] h-[100vh] absolute bg-white-400">Ctrl + Shft + C, tapos ilagay ang dimensions sa Iphone SE</div>}
     </Router>

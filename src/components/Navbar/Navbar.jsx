@@ -3,8 +3,14 @@ import menuIcon from '../../assets/menu.svg';
 import arrow from '../../assets/arrow.svg';
 import exit from '../../assets/exit.svg'
 import './Navbar.css';
+import { useLocation } from 'react-router-dom';
 
 export default function Navbar() {
+  const location = useLocation();
+  console.log(location);
+  const isOnProfilePage = location.pathname === '/profile';
+  console.log(isOnProfilePage);
+
   const [isOpen, setIsOpen] = useState(false);
   
   const [currentDate, setCurrentDate] = useState('');
@@ -28,15 +34,28 @@ export default function Navbar() {
     window.location.href = '/login';
   };
 
+  const redirectToProfile = () => {
+    window.location.href = '/profile';
+  };
+
   return (
     <>
-      <nav className="flex justify-between p-4 text-grey-400">
-        <button onClick={toggleMenu} className='z-20'>
-        <img src={`${isOpen ? exit : menuIcon}`} alt="" />
+      <nav 
+      className={`flex justify-between p-4 text-grey-400 
+      ${isOnProfilePage ? 'bg-blue-400 text-white-400' : ''}`}
+      >
+        <button 
+        onClick={toggleMenu} 
+        className='z-20'>
+        <img 
+        src={`${isOpen ? exit : menuIcon}`} 
+        className={`${isOnProfilePage ? 'brightness-0 invert' : ''}`}/>
         </button>
-        <span>{`Today - ${currentDate}`}</span>
+        <span>
+          {`Today - ${currentDate}`}
+        </span>
         <span></span>
-      </nav>
+      </nav> 
 
       <section className={`absolute -bottom-[954px] w-full ${isOpen ? '' : 'hidden'}`}>
       <div className="fixed inset-0 backdrop-blur-[2px] z-0" onClick={toggleMenu} />
@@ -64,7 +83,7 @@ export default function Navbar() {
           <div className="pt-10 pb-[1000px] px-4">
             <div className="flex justify-between">
               <span className="text-grey-400">Last updated - 01 Oct</span>
-              <img src={arrow} alt="" className='filter brightness-50'/>
+              <img src={arrow} className='filter brightness-50'/>
             </div>
             <div className="text-xl font-bold mt-2">
               <h2>Gallery</h2>
@@ -75,7 +94,7 @@ export default function Navbar() {
         <div
           className={`bg-blue-400 text-white-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up ${isOpen ? '' : 'hidden-div'}`}
           style={{ animationDelay: '0.6s' }}
-          onClick={redirectToLogin}
+          onClick={redirectToProfile}
         >
           <div className="pt-10 pb-[1000px] px-4">
             <div className="flex justify-between">
