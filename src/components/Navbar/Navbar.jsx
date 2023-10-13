@@ -4,15 +4,13 @@ import arrow from '../../assets/arrow.svg';
 import exit from '../../assets/exit.svg'
 import './Navbar.css';
 import { useLocation } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 
 export default function Navbar() {
   const location = useLocation();
-  console.log(location);
   const isOnProfilePage = location.pathname === '/profile';
-  console.log(isOnProfilePage);
 
   const [isOpen, setIsOpen] = useState(false);
-  
   const [currentDate, setCurrentDate] = useState('');
 
   useEffect(() => {
@@ -41,7 +39,7 @@ export default function Navbar() {
   return (
     <>
       <nav 
-      className={`flex justify-between p-4 text-grey-400 
+      className={`flex justify-between p-4 text-grey-400 items-baseline
       ${isOnProfilePage ? 'bg-blue-400 text-white-400' : ''}`}
       >
         <button 
@@ -51,16 +49,22 @@ export default function Navbar() {
         src={`${isOpen ? exit : menuIcon}`} 
         className={`${isOnProfilePage ? 'brightness-0 invert' : ''}`}/>
         </button>
-        <span>
+        <span className='font-light text-sm'>
           {`Today - ${currentDate}`}
         </span>
-        <span></span>
+        <span>
+          <Icon icon="material-symbols:settings" color="white" width="19" />
+        </span>
       </nav> 
 
       <section className={`absolute -bottom-[954px] w-full ${isOpen ? '' : 'hidden'}`}>
-      <div className="fixed inset-0 backdrop-blur-[2px] z-0" onClick={toggleMenu} />
+      <div 
+      className="fixed inset-0 backdrop-blur-[2px] z-0" 
+      onClick={toggleMenu} />
         <div
-          className={`bg-black-400 text-white-400 rounded-t-[32px] hover:cursor-pointer slide-up ${isOpen ? '' : 'hidden-div'}`}
+          className={`bg-black-400 text-white-400 rounded-t-[32px] hover:cursor-pointer slide-up 
+          ${isOpen ? '' : 'hidden-div'
+        }`}
           style={{ animationDelay: '0.1s' }}
           onClick={redirectToLogin}
         >
@@ -76,7 +80,9 @@ export default function Navbar() {
         </div>
 
         <div
-          className={`bg-green-400 text-grey-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up ${isOpen ? '' : 'hidden-div'}`}
+          className={`bg-green-400 text-grey-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up 
+          ${isOpen ? '' : 'hidden-div'
+        }`}
           style={{ animationDelay: '0.4s' }}
           onClick={redirectToLogin}
         >
