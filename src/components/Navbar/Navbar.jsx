@@ -63,11 +63,11 @@ export default function Navbar() {
       </nav>
 
       <section
-        className={`fixed -bottom-[954px] w-full
+        className={`fixed -bottom-[954px] w-full z-10
         ${isOpen ? "" : "hidden"}`}
       >
         <div
-          className="fixed inset-0 backdrop-blur-[2px] z-0"
+          className="fixed inset-0 backdrop-blur-[2px]"
           onClick={toggleMenu}
         />
         <div

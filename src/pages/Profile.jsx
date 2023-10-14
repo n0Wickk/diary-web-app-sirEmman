@@ -19,7 +19,7 @@ export default function Profile() {
         </section>
       </main>
 
-      <section className="mt-4 bg-white-400 p-4 absolute w-full h-[400px] bottom-0 rounded-t-[32px]">
+      <section className="mt-4 bg-white-400 p-4 fixed w-full h-[400px] bottom-0 rounded-t-[32px] z-0">
         <div className="text-sm flex justify-around gap-4">
           <button
             className={`w-full py-3 rounded-3xl button ${
