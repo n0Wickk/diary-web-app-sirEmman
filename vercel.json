@@ -1,23 +1,7 @@
 {
   "routes": [
     {
-      "src": "/login",
-      "dest": "/login.html"
-    },
-    {
-      "src": "/profile",
-      "dest": "/profile.html"
-    },
-    {
-      "handle": "filesystem",
-      "src": "/static/.*"
-    },
-    {
-      "handle": "filesystem",
-      "src": "/images/.*"
-    },
-    {
-      "src": "/.*",
+      "src": "/(.*)",
       "dest": "/index.html"
     }
   ]
