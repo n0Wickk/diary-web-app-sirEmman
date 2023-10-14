@@ -73,7 +73,7 @@ export default function Navbar() {
         <div
           className={`bg-black-400 text-white-400 rounded-t-[32px] hover:cursor-pointer slide-up 
           ${isOpen ? "" : "hidden-div"}`}
-          style={{ animationDelay: "0.1s" }}
+          style={{ animationDelay: "0.05s" }}
           onClick={redirectToLogin}
         >
           <div className="pt-10 pb-[1000px] px-4">
@@ -90,7 +90,7 @@ export default function Navbar() {
         <div
           className={`bg-green-400 text-grey-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up 
           ${isOpen ? "" : "hidden-div"}`}
-          style={{ animationDelay: "0.4s" }}
+          style={{ animationDelay: "0.2s" }}
           onClick={redirectToLogin}
         >
           <div className="pt-10 pb-[1000px] px-4">
@@ -107,7 +107,7 @@ export default function Navbar() {
         <div
           className={`bg-blue-400 text-white-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up 
           ${isOpen ? "" : "hidden-div"}`}
-          style={{ animationDelay: "0.6s" }}
+          style={{ animationDelay: "0.4s" }}
           onClick={redirectToProfile}
         >
           <div className="pt-10 pb-[1000px] px-4">
