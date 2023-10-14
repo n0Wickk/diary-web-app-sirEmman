@@ -42,7 +42,8 @@ export default function Gallery() {
       {showButton && (
         <button
           onClick={scrollToTop}
-          className="p-4 bg-grey-400 rounded-full fixed bottom-8 right-4 z-[2]"
+          className="p-4 bg-grey-400 rounded-full fixed bottom-8 right-4 z-[2] transform transition-transform 
+                    md:hover:scale-150 md:hover:py-6 md:right-[20vw]"
         >
           <Icon icon="ph:arrow-up-thin" color="white" width="20" rotate={0} />
         </button>
@@ -59,7 +60,7 @@ export default function Gallery() {
             <img
               src={image}
               alt={`Image ${index + 1}`}
-              className="w-full h-auto"
+              className="w-full h-auto transform transition-transform hover:scale-150"
             />
           </div>
         ))}
