@@ -5,6 +5,7 @@ import exit from "../../assets/exit.svg";
 import "./Navbar.css";
 import { useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const location = useLocation();
@@ -129,25 +130,26 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div
-          className={`bg-blue-400 text-white-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up 
-          ${isOpen ? "" : "hidden-div"}`}
-          style={{ animationDelay: "0.4s" }}
-          onClick={redirectToProfile}
-        >
-          <div className="pt-10 pb-[1000px] px-4 group">
-            <div className="flex justify-between">
-              <span>Last updated - 01 Oct</span>
-              <img
-                src={arrow}
-                className="md:mr-8 transition-all duration-300 group-hover:mr-0 md:w-2"
-              />
-            </div>
-            <div className="text-xl font-bold mt-2">
-              <h2>Profile</h2>
+        <Link to="/profile">
+          <div
+            className={`bg-blue-400 text-white-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up
+            ${isOpen ? "" : "hidden-div"}`}
+            style={{ animationDelay: "0.4s" }}
+          >
+            <div className="pt-10 pb-[1000px] px-4 group">
+              <div className="flex justify-between">
+                <span>Last updated - 01 Oct</span>
+                <img
+                  src={arrow}
+                  className="md:mr-8 transition-all duration-300 group-hover:mr-0 md:w-2"
+                />
+              </div>
+              <div className="text-xl font-bold mt-2">
+                <h2>Profile</h2>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       </section>
     </>
   );
