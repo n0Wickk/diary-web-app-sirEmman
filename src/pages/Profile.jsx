@@ -15,11 +15,14 @@ export default function Profile() {
         <section className="flex flex-col items-center gap-2 text-white-400">
           <img src={pfp} alt="" className="max-w-[100px]" />
           <h2 className="font-bold text-2xl">Bobby Hill</h2>
-          <p className="font-light">I like turtles!</p>
+          <p className="">I like turtles!</p>
         </section>
       </main>
 
-      <section className="mt-4 bg-white-400 p-4 fixed w-full h-[400px] bottom-0 rounded-t-[32px] z-0">
+      <section
+        className="mt-4 bg-white-400 p-4 fixed w-full h-[400px] bottom-0 rounded-t-[32px] z-0 max-w-[600px]
+                          md:h-[350px]"
+      >
         <div className="text-sm flex justify-around gap-4">
           <button
             className={`w-full py-3 rounded-3xl button ${

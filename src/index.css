@@ -21,3 +21,25 @@
   background-color: #7a70dd;
   color: #fff;
 }
+
+#root {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#wrapper {
+  /* display: flex; */
+  /* justify-content: center; */
+}
+
+@media (min-width: 640px) {
+  :root {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    font-size: 20px;
+  }
+}

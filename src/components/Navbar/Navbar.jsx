@@ -9,6 +9,7 @@ import { Icon } from "@iconify/react";
 export default function Navbar() {
   const location = useLocation();
   const isOnProfilePage = location.pathname === "/profile";
+  const isOnGalleryPage = location.pathname === "/gallery";
 
   const [isOpen, setIsOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
@@ -36,12 +37,24 @@ export default function Navbar() {
     window.location.href = "/profile";
   };
 
+  const redirectToGallery = () => {
+    window.location.href = "/gallery";
+  };
+
   return (
     <>
       {isOnProfilePage ? (
         <style>{`
           body {
             background-color: #7A70DD;
+          }
+        `}</style>
+      ) : null}
+
+      {isOnGalleryPage ? (
+        <style>{`
+          body {
+            background-color: #D1E99F;
           }
         `}</style>
       ) : null}
@@ -58,7 +71,9 @@ export default function Navbar() {
         </button>
         <span className="font-light text-sm">{`Today - ${currentDate}`}</span>
         <span>
-          <Icon icon="material-symbols:settings" color="white" width="19" />
+          {isOnProfilePage && (
+            <Icon icon="material-symbols:settings" color="white" width="19" />
+          )}
         </span>
       </nav>
 
@@ -91,7 +106,7 @@ export default function Navbar() {
           className={`bg-green-400 text-grey-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up 
           ${isOpen ? "" : "hidden-div"}`}
           style={{ animationDelay: "0.2s" }}
-          onClick={redirectToLogin}
+          onClick={redirectToGallery}
         >
           <div className="pt-10 pb-[1000px] px-4">
             <div className="flex justify-between">
