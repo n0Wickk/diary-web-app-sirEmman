@@ -22,18 +22,16 @@ export default function Profile() {
       <section className="mt-4 bg-white-400 p-4 absolute w-full h-[400px] bottom-0 rounded-t-[32px]">
         <div className="text-sm flex justify-around gap-4">
           <button
-            className={`w-full py-3 rounded-3xl ${
-              activeButton === "Note" ? "bg-blue-400 text-white-400" : ""
+            className={`w-full py-3 rounded-3xl button ${
+              activeButton === "Note" ? "active" : ""
             }`}
             onClick={() => handleButtonClick("Note")}
           >
             Note
           </button>
           <button
-            className={`w-full py-3 rounded-3xl ${
-              activeButton === "Recent Notes"
-                ? "bg-blue-400 text-white-400"
-                : ""
+            className={`w-full py-3 rounded-3xl button ${
+              activeButton === "Recent Notes" ? "active" : ""
             }`}
             onClick={() => handleButtonClick("Recent Notes")}
           >

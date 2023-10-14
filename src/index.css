@@ -7,3 +7,17 @@
   font-family: "Inter", sans-serif;
   /* outline: 1px solid red; */
 }
+
+/* ------for profile page */
+.button {
+  background-color: transparent;
+  color: #333;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.button.active {
+  background-color: #7a70dd;
+  color: #fff;
+}
