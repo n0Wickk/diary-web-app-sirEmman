@@ -94,7 +94,7 @@ export default function Navbar() {
             className={`bg-black-400 text-white-400 rounded-t-[32px] hover:cursor-pointer slide-up
             ${isOpen ? "" : "hidden-div"}`}
             style={{ animationDelay: "0.05s" }}
-            onClick={redirectToLogin}
+            onClick={toggleMenu}
           >
             <div className="pt-10 pb-[1000px] px-4 group hover:mb-6 transition-all duration-300">
               <div className="flex justify-between">
@@ -117,6 +117,7 @@ export default function Navbar() {
             className={`bg-green-400 text-grey-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up
             ${isOpen ? "" : "hidden-div"}`}
             style={{ animationDelay: "0.2s" }}
+            onClick={toggleMenu}
           >
             <div className="pt-10 pb-[1000px] px-4 group hover:mb-6 transition-all duration-300">
               <div className="flex justify-between">
@@ -138,6 +139,7 @@ export default function Navbar() {
             className={`bg-blue-400 text-white-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up
             ${isOpen ? "" : "hidden-div"}`}
             style={{ animationDelay: "0.4s" }}
+            onClick={toggleMenu}
           >
             <div className="pt-10 pb-[1000px] px-4 group">
               <div className="flex justify-between">
