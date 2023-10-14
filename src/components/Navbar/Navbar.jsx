@@ -89,46 +89,49 @@ export default function Navbar() {
           className="fixed inset-0 backdrop-blur-[2px]"
           onClick={toggleMenu}
         />
-        <div
-          className={`bg-black-400 text-white-400 rounded-t-[32px] hover:cursor-pointer slide-up 
-          ${isOpen ? "" : "hidden-div"}`}
-          style={{ animationDelay: "0.05s" }}
-          onClick={redirectToLogin}
-        >
-          <div className="pt-10 pb-[1000px] px-4 group hover:mb-6 transition-all duration-300">
-            <div className="flex justify-between">
-              <span className="text-grey-400">Last updated - 01 Oct</span>
-              <img
-                src={arrow}
-                alt=""
-                className="md:mr-8 transition-all duration-300 group-hover:mr-0 md:w-2"
-              />
-            </div>
-            <div className="text-xl font-bold mt-2">
-              <h2>Diary Listing</h2>
+        <Link to="/login">
+          <div
+            className={`bg-black-400 text-white-400 rounded-t-[32px] hover:cursor-pointer slide-up
+            ${isOpen ? "" : "hidden-div"}`}
+            style={{ animationDelay: "0.05s" }}
+            onClick={redirectToLogin}
+          >
+            <div className="pt-10 pb-[1000px] px-4 group hover:mb-6 transition-all duration-300">
+              <div className="flex justify-between">
+                <span className="text-grey-400">Last updated - 01 Oct</span>
+                <img
+                  src={arrow}
+                  alt=""
+                  className="md:mr-8 transition-all duration-300 group-hover:mr-0 md:w-2"
+                />
+              </div>
+              <div className="text-xl font-bold mt-2">
+                <h2>Diary Listing</h2>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div
-          className={`bg-green-400 text-grey-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up 
-          ${isOpen ? "" : "hidden-div"}`}
-          style={{ animationDelay: "0.2s" }}
-          onClick={redirectToGallery}
-        >
-          <div className="pt-10 pb-[1000px] px-4 group hover:mb-6 transition-all duration-300">
-            <div className="flex justify-between">
-              <span className="text-grey-400">Last updated - 01 Oct</span>
-              <img
-                src={arrow}
-                className="filter brightness-50 md:mr-8 transition-all duration-300 group-hover:mr-0 md:w-2"
-              />
-            </div>
-            <div className="text-xl font-bold mt-2">
-              <h2>Gallery</h2>
+        <Link to="/gallery">
+          <div
+            className={`bg-green-400 text-grey-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up
+            ${isOpen ? "" : "hidden-div"}`}
+            style={{ animationDelay: "0.2s" }}
+          >
+            <div className="pt-10 pb-[1000px] px-4 group hover:mb-6 transition-all duration-300">
+              <div className="flex justify-between">
+                <span className="text-grey-400">Last updated - 01 Oct</span>
+                <img
+                  src={arrow}
+                  className="filter brightness-50 md:mr-8 transition-all duration-300 group-hover:mr-0 md:w-2"
+                />
+              </div>
+              <div className="text-xl font-bold mt-2">
+                <h2>Gallery</h2>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         <Link to="/profile">
           <div
