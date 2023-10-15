@@ -57,7 +57,7 @@ export default function LoginForm() {
       </a>
 
       <Link
-        to="/list"
+        to="/"
         className="py-4 px-10 bg-blue-400 rounded-2xl text-white-400 flex justify-center items-center gap-2 hover:gap-8 transition-all duration-300"
         onClick={handleLogin}
       >

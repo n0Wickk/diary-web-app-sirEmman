@@ -65,7 +65,10 @@ export default function Navbar() {
         {isOnEntryPage ? (
           <span>Write</span>
         ) : (
-          <span className="font-light text-sm">{`Today - ${currentDate}`}</span>
+          <Link
+            to="/"
+            className="font-light text-sm"
+          >{`Today - ${currentDate}`}</Link>
         )}
         <span>
           {isOnProfilePage && (
@@ -91,7 +94,7 @@ export default function Navbar() {
           className="fixed inset-0 backdrop-blur-[2px]"
           onClick={toggleMenu}
         />
-        <Link to="/login">
+        <Link to="/list">
           <div
             className={`bg-black-400 text-white-400 rounded-t-[32px] hover:cursor-pointer slide-up
             ${isOpen ? "" : "hidden-div"}`}
