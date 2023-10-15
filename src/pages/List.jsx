@@ -142,7 +142,7 @@ export default function List() {
             data-month={date.getMonth()}
             data-date={date.getDate()}
           >
-            <div className="mt-8 flex justify-between font-semibold border-b-[3px] border-black-400">
+            <div className="mt-8 flex justify-between font-semibold border-b-[1px] md:border-b-[3px] border-black-400">
               <span>
                 {date.toLocaleDateString("en-US", {
                   day: "numeric",
@@ -153,7 +153,7 @@ export default function List() {
             </div>
             <input
               type="text"
-              className="border-b-2 border-grey-400 min-w-full py-4 px-2"
+              className="border-b-[1px] md:border-b-2  border-grey-400 min-w-full py-4 px-2"
             />
           </section>
         ))}
