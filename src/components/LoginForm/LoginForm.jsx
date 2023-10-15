@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import userIcon from "../../assets/user.svg";
-import passwordIcon from "../../assets/password.svg";
 import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
@@ -57,13 +56,14 @@ export default function LoginForm() {
         Don't have an account?
       </a>
 
-      <button
+      <Link
+        to="/list"
         className="py-4 px-10 bg-blue-400 rounded-2xl text-white-400 flex justify-center items-center gap-2 hover:gap-8 transition-all duration-300"
         onClick={handleLogin}
       >
         Login
         <Icon icon="ph:arrow-up-thin" width="20" color="white" rotate={1} />
-      </button>
+      </Link>
     </div>
   );
 }
