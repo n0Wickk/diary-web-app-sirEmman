@@ -106,6 +106,15 @@ export default function List() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const isCurrentDate = (date) => {
+    const currentDate = new Date();
+    return (
+      date.getDate() === currentDate.getDate() &&
+      date.getMonth() === currentDate.getMonth() &&
+      date.getFullYear() === currentDate.getFullYear()
+    );
+  };
+
   return (
     <Fragment>
       <section
@@ -142,8 +151,14 @@ export default function List() {
             data-month={date.getMonth()}
             data-date={date.getDate()}
           >
-            <div className="mt-8 flex justify-between font-semibold border-b-[1px] md:border-b-[3px] border-black-400">
-              <span>
+            <div
+              className={`mt-12 flex justify-between font-semibold border-b-[2.5px] md:border-b-[3px] ${
+                isCurrentDate(date) ? "border-blue-400" : "border-black-400"
+              }`}
+            >
+              <span
+                className={` ${isCurrentDate(date) ? "text-blue-400" : ""}`}
+              >
                 {date.toLocaleDateString("en-US", {
                   day: "numeric",
                   month: "short",
