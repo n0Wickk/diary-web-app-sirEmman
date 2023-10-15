@@ -12,6 +12,7 @@ export default function Navbar() {
   const isOnProfilePage = location.pathname === "/profile";
   const isOnGalleryPage = location.pathname === "/gallery";
   const isOnLoginPage = location.pathname === "/login";
+  const isOnEntryPage = location.pathname === "/entry";
 
   const [isOpen, setIsOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
@@ -29,18 +30,6 @@ export default function Navbar() {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-  };
-
-  const redirectToLogin = () => {
-    window.location.href = "/login";
-  };
-
-  const redirectToProfile = () => {
-    window.location.href = "/profile";
-  };
-
-  const redirectToGallery = () => {
-    window.location.href = "/gallery";
   };
 
   return (
@@ -62,7 +51,7 @@ export default function Navbar() {
       ) : null}
 
       <nav
-        className={`flex justify-between p-4 text-grey-400 items-baseline
+        className={`flex justify-between p-4 text-grey-400 items-center
         ${isOnProfilePage ? "text-white-400" : ""}`}
       >
         <button onClick={toggleMenu} className="z-20">
@@ -73,10 +62,23 @@ export default function Navbar() {
             />
           )}
         </button>
-        <span className="font-light text-sm">{`Today - ${currentDate}`}</span>
+        {isOnEntryPage ? (
+          <span>Write</span>
+        ) : (
+          <span className="font-light text-sm">{`Today - ${currentDate}`}</span>
+        )}
         <span>
           {isOnProfilePage && (
             <Icon icon="material-symbols:settings" color="white" width="19" />
+          )}
+
+          {isOnEntryPage && (
+            <Icon
+              icon="iconamoon:close-light"
+              color="#8e91a0"
+              width="28"
+              rotate={1}
+            />
           )}
         </span>
       </nav>

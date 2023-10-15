@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import pfp from "../assets/samplepfp.png";
 import addIcon from "../assets/add.svg";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
   const [activeButton, setActiveButton] = useState("Note");
@@ -30,7 +31,7 @@ export default function Profile() {
             }`}
             onClick={() => handleButtonClick("Note")}
           >
-            Note
+            Entry
           </button>
           <button
             className={`w-full py-3 rounded-3xl button ${
@@ -38,15 +39,18 @@ export default function Profile() {
             }`}
             onClick={() => handleButtonClick("Recent Notes")}
           >
-            Recent Notes
+            Recent Entries
           </button>
         </div>
 
         {activeButton === "Note" ? (
           <div className="p-8 flex justify-center">
-            <button>
+            <Link
+              to="/entry"
+              className="hover:scale-125 transition-all duration-300"
+            >
               <img src={addIcon} alt="" />
-            </button>
+            </Link>
           </div>
         ) : (
           <div></div>
