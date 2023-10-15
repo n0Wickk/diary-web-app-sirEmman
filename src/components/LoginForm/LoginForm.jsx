@@ -1,15 +1,35 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
+  const fakeUserDatabase = [
+    { username: "admin", password: "admin" },
+    { username: "user1", password: "password1" },
+    { username: "user2", password: "password2" },
+  ];
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = () => {
-    console.log("Username:", username);
-    console.log("Password:", password);
+    const user = fakeUserDatabase.find((user) => user.username === username);
+
+    if (username) {
+      window.location.href = "/test";
+    } else {
+      navigate("/login");
+    }
   };
+
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+
+  // const handleLogin = () => {
+  //   console.log("Username:", username);
+  //   console.log("Password:", password);
+  // };
 
   return (
     <div className="flex flex-col py-9 gap-3">
@@ -57,7 +77,6 @@ export default function LoginForm() {
       </a>
 
       <Link
-        to="/"
         className="py-4 px-10 bg-blue-400 rounded-2xl text-white-400 flex justify-center items-center gap-2 hover:gap-8 transition-all duration-300"
         onClick={handleLogin}
       >
