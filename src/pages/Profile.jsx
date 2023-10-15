@@ -46,7 +46,7 @@ export default function Profile() {
         {activeButton === "Note" ? (
           <div className="p-8 flex justify-center">
             <Link
-              to="/entry"
+              to="/entry?source=profile"
               className="hover:scale-125 transition-all duration-300"
             >
               <img src={addIcon} alt="" />

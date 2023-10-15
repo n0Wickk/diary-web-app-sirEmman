@@ -1,67 +1,53 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import menuIcon from "../../assets/menu.svg";
 import arrow from "../../assets/arrow.svg";
 import exit from "../../assets/exit.svg";
 import "./Navbar.css";
-import { useLocation } from "react-router-dom";
-import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
-export default function Navbar() {
-  const location = useLocation();
-  const isOnProfilePage = location.pathname === "/profile";
-  const isOnGalleryPage = location.pathname === "/gallery";
-  const isOnLoginPage = location.pathname === "/login";
-  const isOnEntryPage = location.pathname === "/entry";
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentDate, setCurrentDate] = useState("");
-
-  useEffect(() => {
-    const getCurrentDate = () => {
-      const today = new Date();
-      const day = today.getDate();
-      const month = today.toLocaleString("default", { month: "short" });
-      return `${day} ${month}`;
-    };
-
-    setCurrentDate(getCurrentDate());
-  }, []);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
+function Navbar({
+  isOnProfilePage,
+  isOnGalleryPage,
+  isOnLoginPage,
+  isOnEntryPage,
+  isOpen,
+  currentDate,
+  toggleMenu,
+}) {
   return (
     <>
-      {isOnProfilePage ? (
+      {isOnProfilePage && (
         <style>{`
           body {
             background-color: #7A70DD;
           }
         `}</style>
-      ) : null}
+      )}
 
-      {isOnGalleryPage ? (
+      {isOnGalleryPage && (
         <style>{`
           body {
             background-color: #D1E99F;
           }
         `}</style>
-      ) : null}
+      )}
 
       <nav
-        className={`flex justify-between p-4 text-grey-400 items-center
-        ${isOnProfilePage ? "text-white-400" : ""}`}
+        className={`flex justify-between p-4 text-grey-400 items-center ${
+          isOnProfilePage ? "text-white-400" : ""
+        }`}
       >
         <button onClick={toggleMenu} className="z-20">
           {isOnLoginPage ? null : (
             <img
               src={`${isOpen ? exit : menuIcon}`}
               className={`${isOnProfilePage ? "brightness-0 invert" : ""}`}
+              alt="Menu"
             />
           )}
         </button>
+
         {isOnEntryPage ? (
           <span>Write</span>
         ) : (
@@ -87,8 +73,9 @@ export default function Navbar() {
       </nav>
 
       <section
-        className={`fixed -bottom-[954px] w-full z-10 md:max-w-[600px]
-        ${isOpen ? "" : "hidden"}`}
+        className={`fixed -bottom-[954px] w-full z-10 md:max-w-[600px] ${
+          isOpen ? "" : "hidden"
+        }`}
       >
         <div
           className="fixed inset-0 backdrop-blur-[2px]"
@@ -96,8 +83,9 @@ export default function Navbar() {
         />
         <Link to="/list">
           <div
-            className={`bg-black-400 text-white-400 rounded-t-[32px] hover:cursor-pointer slide-up
-            ${isOpen ? "" : "hidden-div"}`}
+            className={`bg-black-400 text-white-400 rounded-t-[32px] hover:cursor-pointer slide-up ${
+              isOpen ? "" : "hidden-div"
+            }`}
             style={{ animationDelay: "0.05s" }}
             onClick={toggleMenu}
           >
@@ -119,8 +107,9 @@ export default function Navbar() {
 
         <Link to="/gallery">
           <div
-            className={`bg-green-400 text-grey-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up
-            ${isOpen ? "" : "hidden-div"}`}
+            className={`bg-green-400 text-grey-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up ${
+              isOpen ? "" : "hidden-div"
+            }`}
             style={{ animationDelay: "0.2s" }}
             onClick={toggleMenu}
           >
@@ -130,6 +119,7 @@ export default function Navbar() {
                 <img
                   src={arrow}
                   className="filter brightness-50 md:mr-8 transition-all duration-300 group-hover:mr-0 md:w-2"
+                  alt="Arrow"
                 />
               </div>
               <div className="text-xl font-bold mt-2">
@@ -141,8 +131,9 @@ export default function Navbar() {
 
         <Link to="/profile">
           <div
-            className={`bg-blue-400 text-white-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up
-            ${isOpen ? "" : "hidden-div"}`}
+            className={`bg-blue-400 text-white-400 rounded-t-[32px] -mt-[992px] hover:cursor-pointer slide-up ${
+              isOpen ? "" : "hidden-div"
+            }`}
             style={{ animationDelay: "0.4s" }}
             onClick={toggleMenu}
           >
@@ -152,6 +143,7 @@ export default function Navbar() {
                 <img
                   src={arrow}
                   className="md:mr-8 transition-all duration-300 group-hover:mr-0 md:w-2"
+                  alt="Arrow"
                 />
               </div>
               <div className="text-xl font-bold mt-2">
@@ -164,3 +156,5 @@ export default function Navbar() {
     </>
   );
 }
+
+export default Navbar;
