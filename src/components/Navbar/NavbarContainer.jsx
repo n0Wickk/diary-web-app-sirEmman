@@ -6,7 +6,7 @@ function NavbarContainer() {
   const location = useLocation();
   const isOnProfilePage = location.pathname === "/profile";
   const isOnGalleryPage = location.pathname === "/gallery";
-  const isOnLoginPage = location.pathname === "/login" || "/";
+  const isOnLoginPage = location.pathname === "/";
   const isOnEntryPage = location.pathname === "/entry";
 
   const [isOpen, setIsOpen] = useState(false);
