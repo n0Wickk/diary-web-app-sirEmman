@@ -122,7 +122,12 @@ export default function List() {
           showBorder ? "border-b-[1px] border-grey-400 " : ""
         }`}
       >
-        <span className="font-bold text-3xl">Oct 2023</span>
+        <span className="font-bold text-3xl text-blue-400">
+          {new Date().toLocaleDateString("en-US", {
+            month: "short",
+            year: "numeric",
+          })}
+        </span>
         <div className="flex gap-2">
           <button className="rounded-full bg-black-400 p-2">
             <Icon
