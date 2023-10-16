@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
+import BackToTopButton from "../components/BackToTopButton";
 
 export default function Gallery() {
   const images = [
@@ -13,41 +14,10 @@ export default function Gallery() {
     "https://images.unsplash.com/photo-1564979045531-fa386a275b27?w=1000&q=80",
   ];
 
-  const [showButton, setShowButton] = useState(false);
-
-  useEffect(() => {
-    // Add a scroll event listener to check scroll position
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <main className="p-4">
       <h1 className="font-bold text-2xl text-grey-400">Gallery</h1>
-      {showButton && (
-        <button
-          onClick={scrollToTop}
-          className="p-4 bg-grey-400 rounded-full fixed bottom-8 right-4 z-[2] transform transition-transform 
-                    md:hover:scale-150 md:hover:py-6 md:right-[20vw]"
-        >
-          <Icon icon="ph:arrow-up-thin" color="white" width="20" rotate={0} />
-        </button>
-      )}
+      <BackToTopButton />
 
       <div className="grid grid-cols-2 gap-4 py-4">
         {images.map((image, index) => (
