@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from "react";
 import { useParams } from "react-router-dom";
 
-export default function Entry() {
+export default function EntryBackup() {
   const { title } = useParams();
   const [entryTitle, setEntryTitle] = useState(title || ""); // Initialize with title parameter, or an empty string
 
