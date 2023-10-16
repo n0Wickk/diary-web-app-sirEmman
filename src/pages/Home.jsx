@@ -30,13 +30,13 @@ export default function Home() {
 
       <div className="flex gap-4 mt-4">
         <Link
-          to={"/entry"}
+          to="/entry"
           className="bg-black-400 text-white-400 px-8 py-2 rounded-full text-sm"
         >
           Add Entry
         </Link>
         <Link
-          to={"/list"}
+          to="/list"
           className="text-blue-400 border border-blue-400 px-8 py-2 rounded-full text-sm"
         >
           All

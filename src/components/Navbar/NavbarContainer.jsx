@@ -30,7 +30,9 @@ function NavbarContainer() {
 
   useEffect(() => {
     if (isOnTestPage) {
-      setIsOpen(!isOpen);
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
     }
   }, [isOnTestPage]);
 
