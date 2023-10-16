@@ -5,12 +5,14 @@ import exit from "../../assets/exit.svg";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { useState, useEffect } from "react";
 
 function Navbar({
   isOnProfilePage,
   isOnGalleryPage,
   isOnLoginPage,
   isOnEntryPage,
+  isOnTestPage,
   isOpen,
   currentDate,
   toggleMenu,
@@ -21,6 +23,13 @@ function Navbar({
 
   // Conditionally set the 'to' value based on the presence of 'source' parameter
   const toValue = sourceParam ? "/profile" : "/list";
+
+  // Change Edit Mode
+  const [isOnEditMode, setIsOnEditMode] = useState(false);
+
+  const handleIconToggle = () => {
+    setIsOnEditMode(!isOnEditMode);
+  };
 
   return (
     <>
@@ -59,14 +68,27 @@ function Navbar({
           <span>Write</span>
         ) : (
           <Link
-            to="/"
+            to="/test"
             className="font-light text-sm"
           >{`Today - ${currentDate}`}</Link>
         )}
         <span>
-          {isOnProfilePage && (
-            <Icon icon="material-symbols:settings" color="white" width="19" />
-          )}
+          {isOnProfilePage &&
+            (isOnEditMode ? (
+              <Icon
+                icon="material-symbols:check"
+                color="white"
+                width="19"
+                onClick={handleIconToggle}
+              />
+            ) : (
+              <Icon
+                icon="material-symbols:settings"
+                color="white"
+                width="19"
+                onClick={handleIconToggle}
+              />
+            ))}
 
           {isOnEntryPage && (
             <Link to={toValue}>
@@ -86,10 +108,12 @@ function Navbar({
           isOpen ? "" : "hidden"
         }`}
       >
-        <div
-          className="fixed inset-0 backdrop-blur-[2px]"
-          onClick={toggleMenu}
-        />
+        {!isOnTestPage && (
+          <div
+            className="fixed inset-0 backdrop-blur-[2px]"
+            onClick={toggleMenu}
+          />
+        )}
         <Link to="/list">
           <div
             className={`bg-black-400 text-white-400 rounded-t-[32px] hover:cursor-pointer slide-up ${

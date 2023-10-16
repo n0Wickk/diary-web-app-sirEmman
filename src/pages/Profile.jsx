@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import pfp from "../assets/samplepfp.png";
 import addIcon from "../assets/add.svg";
 import { Link } from "react-router-dom";
@@ -10,12 +10,22 @@ export default function Profile() {
     setActiveButton(buttonType);
   };
 
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    // Fetch the username from local storage
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+  }, []);
+
   return (
     <>
       <main className="bg-blue-400 p-4">
         <section className="flex flex-col items-center gap-2 text-white-400">
           <img src={pfp} alt="" className="max-w-[100px]" />
-          <h2 className="font-bold text-2xl">Bobby Hill</h2>
+          <h2 className="font-bold text-2xl">{username || "Bobby Hill"}</h2>
           <p className="">I like turtles!</p>
         </section>
       </main>

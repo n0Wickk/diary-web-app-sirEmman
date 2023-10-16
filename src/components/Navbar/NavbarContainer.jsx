@@ -8,6 +8,7 @@ function NavbarContainer() {
   const isOnGalleryPage = location.pathname === "/gallery";
   const isOnLoginPage = location.pathname === "/";
   const isOnEntryPage = window.location.pathname.startsWith("/entry");
+  const isOnTestPage = location.pathname === "/test";
 
   const [isOpen, setIsOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
@@ -27,12 +28,19 @@ function NavbarContainer() {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    if (isOnTestPage) {
+      setIsOpen(!isOpen);
+    }
+  }, [isOnTestPage]);
+
   return (
     <Navbar
       isOnProfilePage={isOnProfilePage}
       isOnGalleryPage={isOnGalleryPage}
       isOnLoginPage={isOnLoginPage}
       isOnEntryPage={isOnEntryPage}
+      isOnTestPage={isOnTestPage}
       isOpen={isOpen}
       currentDate={currentDate}
       toggleMenu={toggleMenu}

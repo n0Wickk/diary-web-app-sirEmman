@@ -6,7 +6,9 @@ export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {};
+  const handleLogin = () => {
+    localStorage.setItem("username", username);
+  };
 
   return (
     <div className="flex flex-col py-9 gap-3">
