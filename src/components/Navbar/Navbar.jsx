@@ -3,7 +3,7 @@ import menuIcon from "../../assets/menu.svg";
 import arrow from "../../assets/arrow.svg";
 import exit from "../../assets/exit.svg";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
 function Navbar({
@@ -15,6 +15,13 @@ function Navbar({
   currentDate,
   toggleMenu,
 }) {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const sourceParam = searchParams.get("source");
+
+  // Conditionally set the 'to' value based on the presence of 'source' parameter
+  const toValue = sourceParam ? "/profile" : "/list";
+
   return (
     <>
       {isOnProfilePage && (
@@ -62,12 +69,14 @@ function Navbar({
           )}
 
           {isOnEntryPage && (
-            <Icon
-              icon="iconamoon:close-light"
-              color="#8e91a0"
-              width="28"
-              rotate={1}
-            />
+            <Link to={toValue}>
+              <Icon
+                icon="iconamoon:close-light"
+                color="#8e91a0"
+                width="28"
+                rotate={1}
+              />
+            </Link>
           )}
         </span>
       </nav>

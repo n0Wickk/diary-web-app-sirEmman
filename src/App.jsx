@@ -34,6 +34,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/list" element={<List />} />
         <Route path="/entry" element={<Entry />} />
+        <Route path="/entry/:title" element={<Entry />} />
       </Routes>
       {showOverlay && (
         <div className="overlay top-0 w-[100vw] h-[100vh] absolute bg-white-400">

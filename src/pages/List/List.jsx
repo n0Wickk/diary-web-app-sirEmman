@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react";
+import { useNavigate } from "react-router-dom";
 
 export default function List() {
   const octoberDates = Array.from(
@@ -115,6 +116,23 @@ export default function List() {
     );
   };
 
+  const navigate = useNavigate(); // Initialize navigate
+
+  const [inputHasContent, setInputHasContent] = useState(false); // Initialize state for input content
+  const [titleInput, setTitleInput] = useState(""); // Initialize state for title input
+
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value;
+    setInputHasContent(!!inputValue);
+    setTitleInput(inputValue); // Update the title input value
+  };
+
+  const redirectToEntry = () => {
+    if (inputHasContent) {
+      navigate(`/entry/${encodeURIComponent(titleInput)}`); // Pass titleInput as a parameter
+    }
+  };
+
   return (
     <Fragment>
       <section
@@ -174,6 +192,8 @@ export default function List() {
             <input
               type="text"
               className="border-b-[1px] md:border-b-2  border-grey-400 min-w-full py-4 px-2"
+              onBlur={redirectToEntry}
+              onChange={handleInputChange} // Call handleInputChange when the input changes
             />
           </section>
         ))}

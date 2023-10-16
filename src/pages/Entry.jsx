@@ -1,6 +1,14 @@
+import { useState } from "react";
 import React from "react";
+import { useParams } from "react-router-dom";
 
 export default function Entry() {
+  const { title } = useParams();
+  const [entryTitle, setEntryTitle] = useState(title || ""); // Initialize with title parameter, or an empty string
+
+  const handleTitleChange = (e) => {
+    setEntryTitle(e.target.value);
+  };
   return (
     <main className="px-4 py-4">
       <div>
@@ -8,6 +16,8 @@ export default function Entry() {
         <input
           type="text"
           placeholder="Add a title to this entry"
+          value={entryTitle} // Bind value to entryTitle state
+          onChange={handleTitleChange} // Add an onChange handler
           className="w-full p-4 focus:outline outline-blue-400 rounded-xl"
         />
       </div>

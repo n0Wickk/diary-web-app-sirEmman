@@ -7,7 +7,7 @@ function NavbarContainer() {
   const isOnProfilePage = location.pathname === "/profile";
   const isOnGalleryPage = location.pathname === "/gallery";
   const isOnLoginPage = location.pathname === "/";
-  const isOnEntryPage = location.pathname === "/entry";
+  const isOnEntryPage = window.location.pathname.startsWith("/entry");
 
   const [isOpen, setIsOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
