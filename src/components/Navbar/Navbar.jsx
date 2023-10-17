@@ -73,7 +73,7 @@ function Navbar({
           >{`Today - ${currentDate}`}</Link>
         )}
         <span>
-          {isOnProfilePage &&
+          {/* {isOnProfilePage &&
             (isOnEditMode ? (
               <Icon
                 icon="material-symbols:check"
@@ -88,7 +88,7 @@ function Navbar({
                 width="19"
                 onClick={handleIconToggle}
               />
-            ))}
+            ))} */}
 
           {isOnEntryPage && (
             <Link to={toValue}>

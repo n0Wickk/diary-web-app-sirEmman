@@ -13,13 +13,8 @@ export default function Entry() {
   };
 
   useEffect(() => {
-    // Automatically set the current date as the entry date
     const currentDate = new Date();
-    const formattedDate = currentDate.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
+    const formattedDate = currentDate.toISOString().split("T")[0]; // Format as 'YYYY-MM-DD'
     setEntryDate(formattedDate);
   }, []);
 
@@ -34,13 +29,11 @@ export default function Entry() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    // Check if the title and story are not empty
     if (entryTitle.trim() === "" || entryStory.trim() === "") {
       alert("Title and Story cannot be empty. Please fill them in.");
       return;
     }
 
-    // Create an object to represent the entry
     const entry = {
       title: entryTitle,
       date: entryDate,
@@ -48,13 +41,11 @@ export default function Entry() {
       category: entryCategory,
     };
 
-    // Store the entry data in local storage
     localStorage.setItem(`entry-${entryTitle}`, JSON.stringify(entry));
 
-    // Reset the form fields
     setEntryTitle("");
     setEntryStory("");
-    setEntryCategory("Personal"); // Reset to the default category
+    setEntryCategory("Personal");
   };
 
   return (

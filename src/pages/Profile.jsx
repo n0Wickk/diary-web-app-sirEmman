@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import pfp from "../assets/samplepfp.png";
 import addIcon from "../assets/add.svg";
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 export default function Profile() {
   const [activeButton, setActiveButton] = useState("Note");
@@ -20,12 +21,47 @@ export default function Profile() {
     }
   }, []);
 
+  const [isOnEditMode, setIsOnEditMode] = useState(false);
+
+  const handleIconToggle = () => {
+    setIsOnEditMode(!isOnEditMode);
+  };
+
+  const handleInputChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handleSaveUsername = () => {
+    // Save the edited username to local storage
+    localStorage.setItem("username", username);
+    setIsOnEditMode(false);
+  };
+
   return (
     <>
       <main className="bg-blue-400 p-4">
         <section className="flex flex-col items-center gap-2 text-white-400">
           <img src={pfp} alt="" className="max-w-[100px]" />
-          <h2 className="font-bold text-2xl">{username || "Bobby Hill"}</h2>
+          <div className="flex items-center justify-center gap-2">
+            {isOnEditMode ? (
+              <input
+                className="font-bold text-2xl w-full bg-transparent border-b border-white-400 focus:outline-none "
+                value={username || "Bobby Hill"}
+                onChange={handleInputChange}
+              />
+            ) : (
+              <h2 className="font-bold text-2xl">{username || "Bobby Hill"}</h2>
+            )}
+            {isOnEditMode ? (
+              <button onClick={handleSaveUsername}>
+                <Icon icon="carbon:save" color="white" width={24} />
+              </button>
+            ) : (
+              <button onClick={handleIconToggle}>
+                <Icon icon="carbon:edit" color="white" width={24} />
+              </button>
+            )}
+          </div>
           <p className="">I like turtles!</p>
         </section>
       </main>
