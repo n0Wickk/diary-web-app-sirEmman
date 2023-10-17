@@ -6,9 +6,9 @@ function NavbarContainer() {
   const location = useLocation();
   const isOnProfilePage = location.pathname === "/profile";
   const isOnGalleryPage = location.pathname === "/gallery";
-  const isOnLoginPage = location.pathname === "/";
+  const isOnLoginPage = location.pathname === "/login";
   const isOnEntryPage = window.location.pathname.startsWith("/entry");
-  const isOnTestPage = location.pathname === "/test";
+  const isOnTestPage = location.pathname === "/";
 
   const [isOpen, setIsOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState("");

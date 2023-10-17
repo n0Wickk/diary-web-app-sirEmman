@@ -28,8 +28,8 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/test" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/list" element={<List />} />

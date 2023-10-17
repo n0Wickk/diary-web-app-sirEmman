@@ -68,7 +68,7 @@ function Navbar({
           <span>Write</span>
         ) : (
           <Link
-            to="/test"
+            to="/"
             className="font-light text-sm"
           >{`Today - ${currentDate}`}</Link>
         )}
