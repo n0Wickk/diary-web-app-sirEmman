@@ -6,6 +6,7 @@ import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Navbar({
   isOnProfilePage,
@@ -24,11 +25,21 @@ function Navbar({
   // Conditionally set the 'to' value based on the presence of 'source' parameter
   const toValue = sourceParam ? "/profile" : "/list";
 
+  const navigate = useNavigate();
+
   // Change Edit Mode
   const [isOnEditMode, setIsOnEditMode] = useState(false);
 
   const handleIconToggle = () => {
     setIsOnEditMode(!isOnEditMode);
+  };
+
+  const logout = () => {
+    // Remove the username from local storage
+    localStorage.removeItem("username");
+
+    // Redirect to the login page
+    navigate("/login");
   };
 
   return (
@@ -73,22 +84,16 @@ function Navbar({
           >{`Today - ${currentDate}`}</Link>
         )}
         <span>
-          {/* {isOnProfilePage &&
-            (isOnEditMode ? (
+          {!isOnEntryPage && !isOnLoginPage && (
+            <button onClick={logout} className="flex justify-center">
               <Icon
-                icon="material-symbols:check"
-                color="white"
-                width="19"
-                onClick={handleIconToggle}
+                icon="solar:logout-outline"
+                width={22}
+                color={isOnProfilePage ? "white" : "#8e91a0"}
+                rotate={2}
               />
-            ) : (
-              <Icon
-                icon="material-symbols:settings"
-                color="white"
-                width="19"
-                onClick={handleIconToggle}
-              />
-            ))} */}
+            </button>
+          )}
 
           {isOnEntryPage && (
             <Link to={toValue}>
