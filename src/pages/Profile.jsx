@@ -46,11 +46,11 @@ export default function Profile() {
             {isOnEditMode ? (
               <input
                 className="font-bold text-2xl w-full bg-transparent border-b border-white-400 focus:outline-none "
-                value={username || "Bobby Hill"}
+                value={username}
                 onChange={handleInputChange}
               />
             ) : (
-              <h2 className="font-bold text-2xl">{username || "Bobby Hill"}</h2>
+              <h2 className="font-bold text-2xl">{username}</h2>
             )}
             {isOnEditMode ? (
               <button onClick={handleSaveUsername}>
