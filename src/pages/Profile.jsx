@@ -45,7 +45,7 @@ export default function Profile() {
           <div className="flex items-center justify-center gap-2">
             {isOnEditMode ? (
               <input
-                className="font-bold text-2xl w-full bg-transparent border-b border-white-400 focus:outline-none "
+                className="font-bold text-2xl w-full bg-transparent border-b border-white-400 focus:outline-none max-w-[50vw] "
                 value={username}
                 onChange={handleInputChange}
               />
