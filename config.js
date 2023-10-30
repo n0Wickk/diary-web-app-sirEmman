@@ -1,6 +1,6 @@
 // config.js
 const config = {
-  apiUrl: "http://localhost:5001",
+  apiUrl: "https://diary-api-begd.onrender.com",
 };
 
 export default config;
