@@ -1,4 +1,3 @@
-// DateList.js
 import React, { useEffect, useRef } from "react";
 import DateSection from "./DateSection";
 
@@ -8,6 +7,7 @@ function DateList({
   handleInputChange,
   onBlur,
   getDayOfWeek,
+  diaryEntries,
 }) {
   const sectionRefs = useRef([]);
 
@@ -62,7 +62,19 @@ function DateList({
           onBlur={onBlur}
           sectionRef={(ref) => (sectionRefs.current[index] = ref)}
           getDayOfWeek={getDayOfWeek}
-        />
+        >
+          {/* Display diary entries for this date */}
+          {diaryEntries
+            .filter((entry) => entry.date === date.toISOString().split("T")[0])
+            .map((entry, entryIndex) => (
+              <div key={entryIndex}>
+                <div className="font-semibold">{entry.title}</div>
+                <div>{entry.content}</div>
+                <div>Category: {entry.category}</div>
+                {/* You can add more details here if needed */}
+              </div>
+            ))}
+        </DateSection>
       ))}
     </main>
   );

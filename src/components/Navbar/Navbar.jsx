@@ -36,7 +36,7 @@ function Navbar({
 
   const logout = () => {
     // Remove the username from local storage
-    localStorage.removeItem("username");
+    localStorage.removeItem("userId");
 
     // Redirect to the login page
     navigate("/login");
@@ -79,13 +79,18 @@ function Navbar({
           <span>Write</span>
         ) : (
           <Link
+            title="home"
             to="/"
             className="font-light text-sm"
           >{`Today - ${currentDate}`}</Link>
         )}
         <span>
           {!isOnEntryPage && !isOnLoginPage && (
-            <button onClick={logout} className="flex justify-center">
+            <button
+              onClick={logout}
+              className="flex justify-center"
+              title="logout"
+            >
               <Icon
                 icon="solar:logout-outline"
                 width={22}

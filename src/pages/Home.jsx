@@ -1,30 +1,51 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import samplepfp from "../assets/samplepfp.png";
+import samplepfp from "../assets/pfp2.jpg";
+import axios from "axios";
+import config from "../../config";
 
 export default function Home() {
+  const baseUrl = config.apiUrl;
+
   const [username, setUsername] = useState(null); // Initially set to null
+  const userId = localStorage.getItem("userId"); // Declare userId using const
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the username exists in local storage
-    const storedUsername = localStorage.getItem("username");
-    if (storedUsername) {
-      setUsername(storedUsername);
+    if (userId) {
+      // Fetch the username based on userId
+      axios
+        .get(`${baseUrl}/profile/getUserInfo/${userId}`)
+        .then((response) => {
+          if (response.data) {
+            // Store the username
+            console.log(response.data);
+            setUsername(response.data.username);
+          } else {
+            // If the username doesn't exist, redirect to /login
+            navigate("/login");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching username:", error);
+          // Redirect to /login in case of an error
+          navigate("/login");
+        });
     } else {
-      // If username doesn't exist, redirect to /login
+      // If userId is not available, redirect to /login
       navigate("/login");
     }
-  }, [navigate]);
+  }, [navigate, userId]);
 
   return (
     <main className="p-4">
-      {username === null ? ( // Show loading or placeholder content
+      {userId === null ? ( // Show loading or placeholder content
         <div>Loading...</div>
       ) : (
         <div className="flex justify-between items-center border-b-[1px] border-black-400 py-4">
           <div>
-            <h2 className="font-bold text-2xl">Hi, {username || "Bobby"}!</h2>
+            <h2 className="font-bold text-2xl">Hi, {username}!</h2>
             <p className="text-grey-400">How was your day?</p>
           </div>
           <img

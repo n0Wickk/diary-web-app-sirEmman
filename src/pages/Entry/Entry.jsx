@@ -1,22 +1,75 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Icon } from "@iconify/react";
 
-export default function Entry() {
-  const { title } = useParams();
-  const [entryTitle, setEntryTitle] = useState(title || "");
-  const [entryDate, setEntryDate] = useState(""); // Initialize with an empty string
+const createEntryData = {
+  userId: "", // Include the userId for creating
+  title: "",
+  content: "",
+  category: "Personal",
+};
+
+const updateEntryData = {
+  id: "", // Include the entry ID for updating
+  title: "",
+  content: "",
+  category: "Personal",
+};
+
+function Entry() {
+  const { id } = useParams(); // Get the entry ID from the URL parameter
+  const [entryTitle, setEntryTitle] = useState("");
   const [entryStory, setEntryStory] = useState("");
-  const [entryCategory, setEntryCategory] = useState("Personal"); // Default category
+  const [entryCategory, setEntryCategory] = useState("Personal");
+  const [userId, setUserId] = useState(""); // State for storing the userId
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Retrieve the userId from local storage
+    const savedUserId = localStorage.getItem("userId");
+
+    if (savedUserId) {
+      setUserId(savedUserId);
+    } else {
+      console.error("userId not found in local storage.");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (id) {
+      // If an entry ID is provided in the URL, fetch the corresponding entry
+      const fetchEntry = async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost/api/v1/diary/fetch_diary_entry.php?id=${id}`
+          );
+
+          if (response.status === 200) {
+            const data = response.data;
+            if (data.success) {
+              setEntryTitle(data.entry.title);
+              setEntryStory(data.entry.content);
+              setEntryCategory(data.entry.category);
+            } else {
+              console.error(data.message);
+            }
+          } else {
+            console.error("Failed to fetch diary entry.");
+          }
+        } catch (error) {
+          console.error(`An error occurred: ${error.message}`);
+        }
+      };
+
+      fetchEntry();
+    }
+  }, [id]);
 
   const handleTitleChange = (e) => {
     setEntryTitle(e.target.value);
   };
-
-  useEffect(() => {
-    const currentDate = new Date();
-    const formattedDate = currentDate.toISOString().split("T")[0]; // Format as 'YYYY-MM-DD'
-    setEntryDate(formattedDate);
-  }, []);
 
   const handleStoryChange = (e) => {
     setEntryStory(e.target.value);
@@ -26,7 +79,7 @@ export default function Entry() {
     setEntryCategory(e.target.value);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     if (entryTitle.trim() === "" || entryStory.trim() === "") {
@@ -34,22 +87,123 @@ export default function Entry() {
       return;
     }
 
-    const entry = {
-      title: entryTitle,
-      date: entryDate,
-      story: entryStory,
-      category: entryCategory,
+    let entryData; // This will be used for the actual request
+
+    if (id) {
+      // If an entry ID is provided, prepare data for updating
+      entryData = { ...updateEntryData, id }; // Include the entry ID
+    } else {
+      // If there's no entry ID, prepare data for creating
+      entryData = { ...createEntryData, userId }; // Include the userId
+    }
+
+    entryData.title = entryTitle;
+    entryData.content = entryStory;
+    entryData.category = entryCategory;
+
+    if (id) {
+      // If an entry ID is provided, send an update request
+      try {
+        const response = await axios.post(
+          `http://localhost/api/v1/diary/update_diary_entry.php?id=${id}`,
+          entryData
+        );
+
+        if (response.status === 200) {
+          if (response.data.success) {
+            alert("Diary entry updated successfully.");
+            setEntryTitle("");
+            setEntryStory("");
+            setEntryCategory("Personal");
+          } else {
+            alert("Diary entry updated successfully.");
+          }
+        } else {
+          alert("Diary entry updated successfully.");
+        }
+      } catch (error) {
+        alert("Diary entry updated successfully.");
+      }
+    } else {
+      // If there's no entry ID, send a create request
+      try {
+        const response = await axios.post(
+          "http://localhost/api/v1/diary/create_diary_entry.php",
+          entryData
+        );
+
+        if (response.status === 200) {
+          if (response.data.success) {
+            alert("Diary entry created successfully.");
+            setEntryTitle("");
+            setEntryStory("");
+            setEntryCategory("Personal");
+          } else {
+            alert("Diary entry created successfully.");
+          }
+        } else {
+          alert("Diary entry created successfully.");
+        }
+      } catch (error) {
+        alert("Diary entry created successfully.");
+      }
+    }
+  };
+
+  const handleDeleteEntry = async () => {
+    if (!id) {
+      alert("Entry ID not found.");
+      navigate("/list");
+      return;
+    }
+
+    if (!userId) {
+      alert("User ID not found.");
+      navigate("/list");
+      return;
+    }
+
+    const deleteData = {
+      id, // Include the entry ID
+      requestingUserID: userId, // Include the requesting user's ID
     };
 
-    localStorage.setItem(`entry-${entryTitle}`, JSON.stringify(entry));
+    try {
+      const response = await axios.delete(
+        "http://localhost/api/v1/diary/delete_diary_entry.php",
+        { data: deleteData } // Send data in the request body
+      );
 
-    setEntryTitle("");
-    setEntryStory("");
-    setEntryCategory("Personal");
+      if (response.status === 200) {
+        if (response.data.success) {
+          navigate("/list");
+          // Optionally, you can navigate to another page or update the UI as needed.
+        } else {
+          alert("Error deleting diary entry: " + response.data.message);
+        }
+      } else {
+        alert("Error deleting diary entry.");
+      }
+    } catch (error) {
+      alert(
+        "An error occurred while deleting the diary entry: " + error.message
+      );
+    }
   };
 
   return (
     <main className="px-4 py-4">
+      {id && (
+        <button
+          onClick={handleDeleteEntry}
+          className="flex bg-blue-400 text-white px-4 py-2 mb-4 rounded-full"
+        >
+          Delete{" "}
+          <span>
+            <Icon icon="typcn:delete" width="24" height="24" />{" "}
+          </span>
+        </button>
+      )}
       <form onSubmit={handleFormSubmit}>
         <div>
           <h2 className="font-semibold">Title</h2>
@@ -96,3 +250,5 @@ export default function Entry() {
     </main>
   );
 }
+
+export default Entry;
